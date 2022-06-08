@@ -6,8 +6,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 
-#PROFILE_URL = sys.argv[1]
-PROFILE_URL = "https://www.tiktok.com/@b1ackh0le"
+PROFILE_URL = sys.argv[1]
 
 url_check = urlparse(PROFILE_URL)
 #Check if url points to tiktok and to a profile. 
