@@ -40,7 +40,7 @@ driver.quit()
 for index, video_url in enumerate(vid_list):
     fileName = "video_" + str(index) + ".mp4"
     vid_req = requests.get(video_url)
-    with open(fileName, "wb") as f:
+    with open("Downloads/" + fileName, "wb") as f:
         f.write(vid_req.content)
     f.close()
 
