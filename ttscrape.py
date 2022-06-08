@@ -24,7 +24,6 @@ video_elements = (driver.find_elements(by=By.CSS_SELECTOR, value=".tiktok-x6y88p
 action = ActionChains(driver)
 vid_list = []
 
-#Todo manipulate elements to DL videos 
 for video in video_elements:
     #Hovers over video on profile to activate Autoplay and grant access to mp4 file
     action.move_to_element(video).perform()
@@ -43,4 +42,3 @@ for index, video_url in enumerate(vid_list):
     with open("Downloads/" + fileName, "wb") as f:
         f.write(vid_req.content)
     f.close()
-
