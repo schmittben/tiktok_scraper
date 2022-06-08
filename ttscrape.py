@@ -1,5 +1,5 @@
 import sys
-from time import sleep
+import requests
 from urllib.parse import urlparse
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -27,9 +27,21 @@ vid_list = []
 
 #Todo manipulate elements to DL videos 
 for video in video_elements:
+    #Hovers over video on profile to activate Autoplay and grant access to mp4 file
     action.move_to_element(video).perform()
     print("At element", video)
-    #vid_list.append = driver.find_element(by=By.CLASS_NAME, value="tiktok-lkdalv-VideoBasic e1yey0rl4")
+
+    #Grabs video mp4 link and adds to video url list
+    hover_vid = driver.find_element(by=By.CSS_SELECTOR, value=".tiktok-lkdalv-VideoBasic")
+    vid_list.append(hover_vid.get_attribute('src') + ".mp4")
 
 driver.quit()
-print(vid_list)
+
+#Download Videos
+for index, video_url in enumerate(vid_list):
+    fileName = "video_" + str(index) + ".mp4"
+    vid_req = requests.get(video_url)
+    with open(fileName, "wb") as f:
+        f.write(vid_req.content)
+    f.close()
+
